@@ -1,14 +1,40 @@
 # movies-explorer-frontend
 
-## IP 158.160.30.37
+## Этап 3: верстка и JSX
 
-<div id="header" align="left">
-  <img src="https://img.freepik.com/premium-vector/back-end-typographic-header-concept_277904-6387.jpg?w=2000" width="100"/>
-  - https://api.krasnova.nomoredomains.rocks
-</div>
+- создание компонентов на React
+- подготовлены все необходимые маршруты, налажена работа всех ссылок:
+  по роуту / отображается страница «О проекте»;
+  по роуту /movies - «Фильмы»;
+  по роуту /saved-movies - «Сохранённые фильмы»;
+  по роуту /profile - профиль пользователя;
+  по роутам /signin и /signup отображаются страницы авторизации и регистрации.
 
-<div id="header" align="left">
-  <img src="https://img.freepik.com/premium-vector/frontend-typographic-header-concept-website-interface-design-improvement-programming-and-coding-it-profession-isolated-flat-vector-illustration_277904-7101.jpg?w=2000" width="100"/>
-</div>
+### Технологии:
 
-[Ссылка на макет Figma](<https://www.figma.com/file/kxWr0sGIAVEuwo916KXHrS/Diploma-(Copy)?type=design&node-id=891-3857&t=LJEAOVwNUZuOh1Vd-11>)
+- HTML5
+- CCS3
+- JavaScript (стандарт ES6)
+- React (Create React App, портирование разметки в JSX)
+- Адаптивная верстка (мобильные устройства, планшеты, десктопы)
+- Flexbox
+- Grid Layout
+- Позиционирование
+- Псевдоклассы
+- Webpack
+
+## Инструкция по установке
+
+1. Клонировать репозиторий: gir clone
+   `git@github.com:JuliaKrasnova2008/movies-explorer-frontend.git`
+2. Установить зависимости:
+   `npm i`
+3. Запустить приложение:
+   `npm run start`
+4. Запустить сервер с hot-reload:
+   `npm run dev`
+
+## Ссылки:
+
+- [Макет](https://disk.yandex.ru/d/LWM0cOjQIQgkUw)
+- [Репозиторий с бэкендом](https://github.com/JuliaKrasnova2008/movies-explorer-api.git)
