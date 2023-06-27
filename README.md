@@ -16,6 +16,7 @@
 ### Технологии:
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Inter&size=18&pause=1000&color=3456F3&multiline=true&width=600&height=30&lines=%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F+%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D0%B0+%D0%B2+Figma)](https://git.io/typing-svg)
+
 [Макет](https://disk.yandex.ru/d/LWM0cOjQIQgkUw)
 
 ### Функциональность на «React» и JS
