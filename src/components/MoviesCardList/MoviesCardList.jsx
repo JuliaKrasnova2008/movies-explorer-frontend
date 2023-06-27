@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import SearchError from "../SearchError/SearchError";
 
 export default function MoviesCardList({ loadMore, movies, isBlocked, err }) {
     const [loading, setLoading] = useState(false);
@@ -16,15 +17,11 @@ export default function MoviesCardList({ loadMore, movies, isBlocked, err }) {
     const preloader = [...new Array(4)].map(() => <Preloader />); //так можно создать пустой массив из 8 элементов
 
     if (movies.length === 0) {
-        return <div>Ничего не найдено</div>;
+        return <SearchError errorText={'Ничего не найдено'} />
+
     }
     if (err) {
-        return (
-            <div>
-                Во время запроса произошла ошибка. Возможно, проблема с соединением или
-                сервер недоступен. Подождите немного и попробуйте ещё раз
-            </div>
-        );
+        return <SearchError errorText={'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'} />
     }
     return (
         <div className="movies-card-list">

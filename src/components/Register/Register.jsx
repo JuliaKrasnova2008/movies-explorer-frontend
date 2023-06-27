@@ -2,11 +2,17 @@ import React from 'react'
 import './Register.css'
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../images/logo.svg'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+import { handleReg } from '../../utils/MainApi'
 
 
 export default function Register() {
+
+    //создаем метод для изменения локации, нужен в onSubmit
+    const navigate = useNavigate()
 
     //начальные значения для Formik
     const initialValues = {
@@ -17,17 +23,25 @@ export default function Register() {
 
     //нужно для валидации формы
     const loginSchema = Yup.object().shape({
-        name: Yup.string().typeError('Должно быть строкой').required('Обязательное поле').min(2, 'Введите не менее 2 символов').max(20, 'Введите не более 20 символов'),
+        name: Yup.string().required('Обязательное поле').min(2, 'Введите не менее 2 символов').max(20, 'Введите не более 20 символов'),
         email: Yup.string('Введите корректный email').email('Введите корректный email').required('Обязательное поле').min(5, 'Введите не менее 5 символов').max(25, 'Введите не более 25 символов'), //ключ email - это строка, эл/адрес, обязательное поле(не пустое), минималье кол-во и максимальное кол-во символов - эти методы взяты из библиотеки Yup
         password: Yup.string('Введите корректный пароль').min(5, 'Введите не менее 5 символов').max(25, 'Введите не более 25 символов').required('Обязательное поле'),
     })
 
-    //нужна для отправки формы, пареметр values содержит все компоненты Field(name, id, group и тд)
-    //при вызове handleRegister первым параметром передаем все значения из формы(name, id, group и тд),
-    //вторым параметром описываем действия при успешном ответе сервера(onSuccess) и при ошибке (onError)
     const onSubmit = (values) => {
-        console.log(values)
+        handleRegister(values, {
+            onSuccess: (res) => {
+                console.log(res);
+                navigate('/signin')
+            }, onError: (res) => {
+                alert("Произошла ошибка. Попробуйте еще раз")
+            }
+        })
     }
+
+    const { mutate: handleRegister } = useMutation({ //useMutation - хук, который позволяет создать функцию отложенного вызова(срабатывают при клике, изменении, каком-то действии, главное не сразу)
+        mutationFn: handleReg
+    })
 
     return (
         <>
@@ -39,6 +53,7 @@ export default function Register() {
 
                 <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={onSubmit}>
                     {(formik) => {
+                        const { isValid, dirty } = formik
                         return (
                             <Form className="user-form">
                                 <label className='user-form__field'>Имя
@@ -72,7 +87,7 @@ export default function Register() {
                                     />
                                     <ErrorMessage name="password" component="div" className='error__message' />
                                 </label>
-                                <button className="user-form__button" type="submit">Зарегестрироваться</button>
+                                <button className="user-form__button" type="submit" disabled={!(dirty && isValid)}>Зарегестрироваться</button>
                                 <p className="user-form__subtitle">
                                     Уже зарегистрированы?{" "}
                                     <Link to="/signin" className="user-form__link">

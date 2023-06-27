@@ -102,7 +102,7 @@
     opacity: 0.6;
     transition: 0.4s ease;
 }
-.form__button-save_unactive {
+.user-form__button:disabled {
     pointer-events: none;
     background: #ffffff;
     border: 1px solid #000000;

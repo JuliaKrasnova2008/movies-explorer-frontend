@@ -1,12 +1,22 @@
 import React from 'react'
 import './Login.css'
 import * as Yup from 'yup'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../images/logo.svg'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { useMutation } from '@tanstack/react-query'
+import { handleLogin } from '../../utils/MainApi'
+import { useDispatch } from 'react-redux'
+import { setToken } from '../../redux/slices/userReducer'
 
 
 export default function Login() {
+
+    //создаем метод для изменения локации, нужен в onSubmit
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
     //начальные значения для Formik
     const initialValues = {
         email: '',
@@ -19,10 +29,21 @@ export default function Login() {
         password: Yup.string('Введите корректный пароль').min(5, 'Введите не менее 5 символов').max(25, 'Введите не более 25 символов').required('Обязательное поле'),
     })
 
-    //нужна для отправки формы, пареметр values содержит все компоненты Field(name, id, group и тд)
     const onSubmit = (values) => {
-        console.log(values)
+        handleRegister(values, {
+            onSuccess: (res) => {
+                console.log(res);
+                dispatch(setToken(res.token))
+                navigate('/movies')
+            }, onError: (res) => {
+                alert("Произошла ошибка. Попробуйте еще раз")
+            }
+        })
     }
+
+    const { mutate: handleRegister } = useMutation({ //useMutation - хук, который позволяет создать функцию отложенного вызова(срабатывают при клике, изменении, каком-то действии, главное не сразу)
+        mutationFn: handleLogin
+    })
 
     return (
         <>
@@ -34,6 +55,7 @@ export default function Login() {
 
                 <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={onSubmit}>
                     {(formik) => {
+                        const { isValid, dirty } = formik
                         return (
                             <Form className="user-form">
                                 <label className='user-form__field'>E-mail
@@ -56,7 +78,7 @@ export default function Login() {
                                     />
                                     <ErrorMessage name="password" component="div" className='error__message' />
                                 </label>
-                                <button className="user-form__button" type="submit">Войти</button>
+                                <button className="user-form__button" type="submit" disabled={!(dirty && isValid)}>Войти</button>
                                 <p className="user-form__subtitle">
                                     Ещё не зарегистрированы?{" "}
                                     <Link to="/signup" className="user-form__link">

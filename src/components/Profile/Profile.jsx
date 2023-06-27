@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Profile.css'
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Link } from 'react-router-dom'
 import Header from '../Header/Header'
+import { getUserInfo } from '../../utils/MainApi'
+import { useSelector } from 'react-redux'
 
 export default function Profile() {
+    const token = useSelector((state) => state.user.token);
+
     //начальные значения для Formik
     const initialValues = {
         name: '',
@@ -22,6 +26,13 @@ export default function Profile() {
     const onSubmit = (values) => {
         console.log(values)
     }
+
+    useEffect(() => {
+        getUserInfo(token)
+            .then((data) => {
+                console.log(data);
+            })
+    }, [])
 
     return (
         <>

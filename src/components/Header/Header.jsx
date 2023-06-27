@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 import logo from '../../images/logo.svg'
 import menu from '../../images/menu-button.svg'
 import Navigation from '../Navigation/Navigation';
+import { useSelector } from 'react-redux';
 
-export default function Header({ isLogged }) {
+export default function Header() {
+    const token = useSelector((state) => state.user.token);
 
-    // На этапе верстки: чтобы header менялся в зависимости от того зарегистрирован пользователь или нет,
-    //     нужно заккоментировать первую часть после условия !isLogged ? 
     return (
         <>
-            {!isLogged ? (
+            {!token ? (
                 <header className="header" id="header">
                     <Link to="/" className='header__logo'>
                         <img src={logo} alt='Логотип сайта' />

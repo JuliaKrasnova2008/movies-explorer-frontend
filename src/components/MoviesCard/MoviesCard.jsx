@@ -10,7 +10,6 @@ export default function MoviesCard({ movie }) {
     const token = useSelector((state) => state.user.token);
     const id = useSelector((state) => state.user.token);
     const [isLike, setIsLike] = useState(false);
-
     function getTimeFromMins(mins) {
         let hours = Math.trunc(mins / 60);
         let minutes = mins % 60;
@@ -18,12 +17,14 @@ export default function MoviesCard({ movie }) {
     }
     useEffect(() => {
         getLikeMovies(token).then((data) => {
-            setIsLike(data?.find((elem) => elem.movieId === movie.id));
+            // console.log(data);
+            // setIsLike(data?.find((elem) => elem.movieId === movie.id));
         });
     }, [token]);
 
     function handleClick(e) {
         if (e.target.classList.contains("movies-card__favorite-btn_active")) {
+            console.log(movie.id);
             dislikeMovie(movie.id, token);
             e.target.classList.remove("movies-card__favorite-btn_active");
         } else {
@@ -98,7 +99,7 @@ export default function MoviesCard({ movie }) {
                             <button
                                 type="button"
                                 className="movies-card__delete-btn"
-                                onClick={(e) => dislikeMovie(movie.movieId, token)}
+                                onClick={(e) => dislikeMovie(movie._id, token)}
                             ></button>
                         </div>
                     </li>

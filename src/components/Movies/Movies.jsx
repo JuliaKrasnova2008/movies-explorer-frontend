@@ -19,6 +19,9 @@ export default function Movies() {
 
     useEffect(() => {
         if (width > 1280) {
+            setMax(4);
+            setCountFilms(4);
+        } else if (width > 1024) {
             setMax(3);
             setCountFilms(3);
         } else if (width > 768) {
