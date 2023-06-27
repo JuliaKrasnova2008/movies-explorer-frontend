@@ -15,8 +15,9 @@
 
 ### Технологии:
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Подготовка+,+генерация+макета+в+Figma)](https://git.io/typing-svg)
-[Макет](https://disk.yandex.ru/d/LWM0cOjQIQgkUw)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Inter&size=16&pause=1000&color=00000079&width=550&lines=%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F+%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D0%B0+%D0%B2+Figma)](https://git.io/typing-svg)
+
+- [Макет](https://disk.yandex.ru/d/LWM0cOjQIQgkUw)
 
 ### Функциональность на «React» и JS
 
