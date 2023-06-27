@@ -64,6 +64,6 @@
 4. Запустить сервер с hot-reload:
    `npm run dev`
 
-- [Ссылка на проект](https://krasnova.nomoredomains.rocks)
+[Ссылка на проект](https://krasnova.nomoredomains.rocks)
 
 Публичный IP-адрес сервера - 158.160.72.232
