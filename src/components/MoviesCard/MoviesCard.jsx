@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./MoviesCard.css";
-import film1 from "../../images/pic__COLOR_pic-1.png";
 import { Navigate, useLocation } from "react-router-dom";
 import { dislikeMovie, getLikeMovies, likeMovie } from "../../utils/MainApi";
 import { useSelector } from "react-redux";
@@ -8,7 +7,6 @@ import { useSelector } from "react-redux";
 export default function MoviesCard({ movie }) {
     const location = useLocation();
     const token = useSelector((state) => state.user.token);
-    const id = useSelector((state) => state.user.token);
     const [isLike, setIsLike] = useState(false);
     function getTimeFromMins(mins) {
         let hours = Math.trunc(mins / 60);
@@ -17,16 +15,14 @@ export default function MoviesCard({ movie }) {
     }
     useEffect(() => {
         getLikeMovies(token).then((data) => {
-            // console.log(data);
-            // setIsLike(data?.find((elem) => elem.movieId === movie.id));
+            setIsLike(data.find((elem) => elem.movieId === movie.id))
         });
     }, [token]);
 
     function handleClick(e) {
-        if (e.target.classList.contains("movies-card__favorite-btn_active")) {
-            console.log(movie.id);
+        if (isLike) {
             dislikeMovie(movie.id, token);
-            e.target.classList.remove("movies-card__favorite-btn_active");
+            setIsLike(false)
         } else {
             likeMovie(
                 {
@@ -44,11 +40,10 @@ export default function MoviesCard({ movie }) {
                 },
                 token
             ).then(() => {
-                e.target.classList.add("movies-card__favorite-btn_active");
+                setIsLike(true)
             });
         }
     }
-
     return (
         <>
             {location.pathname === "/movies" ? (
@@ -99,7 +94,9 @@ export default function MoviesCard({ movie }) {
                             <button
                                 type="button"
                                 className="movies-card__delete-btn"
-                                onClick={(e) => dislikeMovie(movie._id, token)}
+                                onClick={(e) => {
+                                    dislikeMovie(movie.movieId, token)
+                                }}
                             ></button>
                         </div>
                     </li>

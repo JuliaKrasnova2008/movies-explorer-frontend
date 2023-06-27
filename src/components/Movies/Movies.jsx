@@ -17,6 +17,8 @@ export default function Movies() {
     const short = useSelector((state) => state.search.short);
     const [err, setErr] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         if (width > 1280) {
             setMax(4);
@@ -53,6 +55,7 @@ export default function Movies() {
 
     useEffect(() => {
         if (search !== "") {
+            setLoading(true)
             getMovies()
                 .then((data) => {
                     setErr(false);
@@ -73,10 +76,12 @@ export default function Movies() {
                             }
                         })
                     );
+                    setLoading(false)
                     console.log(movies);
                 })
                 .catch((err) => {
                     setErr(true);
+                    setLoading(false)
                 });
         }
     }, [search, countFilms, short]);
@@ -90,6 +95,7 @@ export default function Movies() {
                 loadMore={loadMore}
                 isBlocked={isBlocked}
                 movies={movies.slice(0, countFilms)}
+                loading={loading}
             />
             <Footer />
         </>

@@ -9,11 +9,13 @@ import { getLikeMovies } from "../../utils/MainApi";
 export default function SavedMovies() {
     const token = useSelector((state) => state.user.token);
     const [likedMovies, setLikedMovies] = useState([]);
+
     useEffect(() => {
         getLikeMovies(token).then((data) => {
             setLikedMovies(data);
         });
     }, [token]);
+
 
     return (
         <>
