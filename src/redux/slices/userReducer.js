@@ -14,6 +14,7 @@ export const userSlice = createSlice({
         setId: (state, action) => {
             state.id = action.payload;
         },
+
     },
 });
 export default userSlice.reducer; //экспортируем хранилище

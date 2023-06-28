@@ -4,7 +4,7 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import SearchError from "../SearchError/SearchError";
 
-export default function MoviesCardList({ loadMore, movies, isBlocked, err, loading }) {
+export default function MoviesCardList({ loadMore, movies, isBlocked, err, loading, onUpdate }) {
 
     const preloader = [...new Array(4)].map(() => <Preloader />); //так можно создать пустой массив из 8 элементов
 
@@ -21,7 +21,7 @@ export default function MoviesCardList({ loadMore, movies, isBlocked, err, loadi
                 {loading
                     ? preloader
                     : movies.map((elem) => {
-                        return <MoviesCard movie={elem} />;
+                        return <MoviesCard movie={elem} onUpdate={onUpdate} key={elem._id} />;
                     })}
             </ul>
             {!isBlocked && (

@@ -65,5 +65,6 @@
    `npm run dev`
 
 [Ссылка на проект](https://krasnova.nomoredomains.rocks)
+[Ссылка на пул реквест](https://github.com/JuliaKrasnova2008/movies-explorer-frontend/pull/2)
 
 Публичный IP-адрес сервера - 158.160.72.232

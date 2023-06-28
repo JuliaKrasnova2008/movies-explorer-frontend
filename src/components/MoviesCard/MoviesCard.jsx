@@ -4,7 +4,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { dislikeMovie, getLikeMovies, likeMovie } from "../../utils/MainApi";
 import { useSelector } from "react-redux";
 
-export default function MoviesCard({ movie }) {
+export default function MoviesCard({ movie, onUpdate }) {
     const location = useLocation();
     const token = useSelector((state) => state.user.token);
     const [isLike, setIsLike] = useState(false);
@@ -95,7 +95,9 @@ export default function MoviesCard({ movie }) {
                                 type="button"
                                 className="movies-card__delete-btn"
                                 onClick={(e) => {
-                                    dislikeMovie(movie.movieId, token)
+                                    dislikeMovie(movie.movieId, token).then(() => {
+                                        onUpdate()
+                                    })
                                 }}
                             ></button>
                         </div>

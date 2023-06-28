@@ -1,23 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import './SearchForm.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSearch } from '../../redux/slices/searchReducer'
+import { setSaveSearch, setSearch } from '../../redux/slices/searchReducer'
+import { useLocation } from 'react-router-dom'
 
 export default function SearchForm() {
-    const search = useSelector((state) => state.search.search)
-    const [value, setValue] = useState(search)
-
-    const dispatch = useDispatch()
+    const search = useSelector((state) => state.search.search);
+    const saveSearch = useSelector((state) => state.search.saveSearch);
+    const [value, setValue] = useState(search);
+    const location = useLocation();
+    const dispatch = useDispatch();
 
     function handleClick(event) {
         event.preventDefault()
-        if (value !== '') {
-            dispatch(setSearch(value))
+        if (location.pathname === '/movies') {
+            if (value !== '') {
+                dispatch(setSearch(value))
+            }
+            else {
+                alert("Нужно ввести ключевое слово")
+            }
         } else {
-            alert("Нужно ввести ключевое слово")
+            dispatch(setSaveSearch(value))
         }
     }
+    useEffect(() => {
+        if (location.pathname === '/saved-movies') {
+            setValue(saveSearch)
+        }
+    }, [])
 
     return (
         <>
