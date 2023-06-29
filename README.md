@@ -25,7 +25,8 @@
 - созданы роуты и контроллеры
 - реализована аутентификация и авторизация
 - реализовано логирование
-- создан сервер, установите всё необходимое и разверните на нём API.
+- создан сервер, установите всё необходимое и разверните на нём API
+
   [Репозиторий с бэкендом](https://github.com/JuliaKrasnova2008/movies-explorer-api.git)
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Inter&size=18&pause=1000&color=3456F3&multiline=true&width=500&height=30&lines=%D0%92%D1%91%D1%80%D1%81%D1%82%D0%BA%D0%B0+%D0%B8+JSX)](https://git.io/typing-svg)
@@ -39,7 +40,7 @@
   по роуту /movies - «Фильмы»;
   по роуту /saved-movies - «Сохранённые фильмы»;
   по роуту /profile - профиль пользователя;
-  по роутам /signin и /signup отображаются страницы авторизации и регистрации.
+  по роутам /signin и /signup отображаются страницы авторизации и регистрации;
 - flexbox
 - grid Layout
 - позиционирование
@@ -64,7 +65,8 @@
 4. Запустить сервер с hot-reload:
    `npm run dev`
 
-[Ссылка на проект](https://krasnova.nomoredomains.rocks)
-[Ссылка на пул реквест](https://github.com/JuliaKrasnova2008/movies-explorer-frontend/pull/2)
-
 Публичный IP-адрес сервера - 158.160.72.232
+
+[Ссылка на проект](https://krasnova.nomoredomains.rocks)
+
+[Ссылка на пул реквест](https://github.com/JuliaKrasnova2008/movies-explorer-frontend/pull/2)

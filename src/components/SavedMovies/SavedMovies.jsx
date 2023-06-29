@@ -29,7 +29,6 @@ export default function SavedMovies() {
                     );
                 }
             }));
-            console.log(data);
         });
     }
 
@@ -42,7 +41,8 @@ export default function SavedMovies() {
         <>
             <Header />
             <SearchForm />
-            <MoviesCardList movies={likedMovies} isBlocked={true} onUpdate={updateLikeMovies} />
+            <MoviesCardList movies={likedMovies} isBlocked={true} onUpdate={updateLikeMovies} isSavedFilms={true}
+            />
             <Footer />
         </>
     );

@@ -77,7 +77,6 @@ export default function Movies() {
                         })
                     );
                     setLoading(false)
-                    console.log(movies);
                 })
                 .catch((err) => {
                     setErr(true);
@@ -96,6 +95,7 @@ export default function Movies() {
                 isBlocked={isBlocked}
                 movies={movies.slice(0, countFilms)}
                 loading={loading}
+                isSavedFilms={false}
             />
             <Footer />
         </>
