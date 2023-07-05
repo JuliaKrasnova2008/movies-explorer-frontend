@@ -11,9 +11,10 @@ import { useDispatch } from "react-redux";
 import { setToken } from "../../redux/slices/userReducer";
 
 export default function Register() {
-  const validMail =
-    /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/;
+  const validMail = /^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/;
+
   const dispatch = useDispatch();
+
   //создаем метод для изменения локации, нужен в onSubmit
   const navigate = useNavigate();
 
@@ -31,7 +32,6 @@ export default function Register() {
       .min(2, "Введите не менее 2 символов")
       .max(20, "Введите не более 20 символов"),
     email: Yup.string("Введите корректный email")
-      .email("Введите корректный email")
       .matches(validMail, "Введите корректный email")
       .min(5, "Введите не менее 5 символов")
       .max(25, "Введите не более 25 символов"), //ключ email - это строка, эл/адрес, обязательное поле(не пустое), минималье кол-во и максимальное кол-во символов - эти методы взяты из библиотеки Yup
